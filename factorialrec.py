@@ -13,7 +13,8 @@ def fact(num):
         return num
 
 
-print(fact(-1))
+for x in range(0, 1000, 10):
+    print(fact(x))
 
 
 """ logic of the program """
