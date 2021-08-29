@@ -1,70 +1,52 @@
-# implementation of mergesort
-
-import random
-
-def mergesort(array):
-
-    # base condition of function
+arr = [9,8,7,6]
+def MergeSort(array, l, r):
+    
     if(len(array) == 1):
         return array
     
-    else:
-
-        # splitting the array into two parts
-        # running the functions to split the array further
-        # returns splitted and sorted array
-        left = mergesort(array[len(array)//2:])
-        right = mergesort(array[:len(array)//2])
-
-        # merging the two arrays
-        merged_and_sorted_array = []
-
-        # checking which splitted array is larger 
-        if(len(left) < len(right)):
-
-            # sorting and inserting elements of both splitted arrays into a single array
-            index_of_left_array = index_of_right_array = 0
-            while(index_of_left_array < len(left) and index_of_right_array < len(right)):
-                
-                if(left[index_of_left_array] < right[index_of_right_array]):
-                    merged_and_sorted_array.append(left[index_of_left_array])
-                    index_of_left_array += 1
-
-                else:
-                    merged_and_sorted_array.append(right[index_of_right_array])
-                    index_of_right_array += 1
-
-            while( index_of_right_array < len(right)):
-                merged_and_sorted_array.append(right[index_of_right_array])
-                index_of_right_array +=1
+    # 1) divide the array into two parts till the len of array is 1
+    
+    avg = len(array) // 2
+    
+    left = array[:avg]
+    right = array[avg:]
+    
+    MergeSort(left, l, avg)
+    MergeSort(right, avg+1, r)
+    
+    # 2) Merging two arrays into one single array as well as sorting them
+    def Merge(array, left, right):
+        
+        # indexes for left, right and main array
+        i = 0
+        j = 0
+        k = 0
+        
+        # sorting and inserting the elements into the array
+        while(i < len(left) and j < len(right)):
+            if(left[i] < right[j]):
+                array[k] = left[i]
+                k += 1
+                i += 1
+            else:
+                array[k] = right[j]
+                j += 1
+                k += 1
             
-            while(index_of_left_array < len(left)):
-                merged_and_sorted_array.append(left[index_of_left_array])
-                index_of_left_array += 1
-
+        # sending remaining the elements into the main array
+        if(i < len(left)):
+            while(i < len(left)):
+                array[k] = left[i]
+                k += 1
+                i += 1
+            
         else:
-
-            # sorting and inserting elements of both splitted arrays into a single array
-            index_of_left_array = index_of_right_array = 0
-            while (index_of_left_array < len(left) and index_of_right_array < len(right)):
-
-                if(left[index_of_left_array] < right[index_of_right_array]):
-                    merged_and_sorted_array.append(left[index_of_left_array])
-                    index_of_left_array += 1
-
-                else:
-                    merged_and_sorted_array.append(right[index_of_right_array])
-                    index_of_right_array += 1
-            
-            while( index_of_right_array < len(right)):
-                merged_and_sorted_array.append(right[index_of_right_array])
-                index_of_right_array += 1
-
-            
-            while(index_of_left_array < len(left)):
-                merged_and_sorted_array.append(left[index_of_left_array])
-                index_of_left_array += 1
-
-        return merged_and_sorted_array
+            while(j < len(right)):
+                array[k] = right[j]
+                k += 1
+                j += 1
+    
+    Merge(array, left, right)
+MergeSort(arr, 0, 4)
 
 
