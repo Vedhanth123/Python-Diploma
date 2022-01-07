@@ -13,7 +13,7 @@ class Goods():
     def __init__(self, name: str, price: float, quantity: int): # name: str denotes that name parameter given should only contain str other than that datatype will not be accepted, similar to type congestion in C++, Java
 
         # -------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        # assert: assert statement in python is used to check condition and return an assertion error if the statement is false.
+        # assert: assert statement in python is used to check condition and return an assertion error if the statement is false. This can be handled by try except in python
         assert quantity >= 0, f"The quantity can't be less than zero" # we can also add messages to assertion error
         # -------------------------------------------------------------------------------------------------------------------------------------------------------------------
         
