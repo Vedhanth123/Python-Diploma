@@ -22,4 +22,6 @@ def display():
 # creating a button which displays whatever is written on entry widget
 bt = Button(mainwindow,command=display,text="Display!").grid(row=2,column=0,columnspan=2)
 
+Radiobutton(mainwindow)
+
 mainwindow.mainloop()
