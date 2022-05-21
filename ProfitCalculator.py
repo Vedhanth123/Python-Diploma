@@ -1,4 +1,4 @@
-principle = 10000
+principle = int(input())
 roi = 0.18
 
 reinvest = [principle]
@@ -24,6 +24,7 @@ for x in range(30):
         withdrawable += return_
         reinvest.append(return_)
 
+print(withdrawable)
 
         
         
