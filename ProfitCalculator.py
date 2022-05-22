@@ -11,16 +11,19 @@ for x in range(30):
     
     if(x < 8):
         return_ = principle * roi
+        return_ = return_ - return_ * 0.1
         principle += return_
         reinvest.append(return_)
     if(x >= 8 and x < 21):
         principle -= reinvest[abs(8-x)]
         return_ = principle * roi
+        return_ -= return_ * 0.1
         principle += return_
         reinvest.append(return_)
     if(x >= 22):
         principle -= reinvest[abs(8-x)]
         return_ = principle * roi
+        return_ -= return_ * 0.1
         withdrawable += return_
         reinvest.append(return_)
 
