@@ -1,35 +1,48 @@
-principle = float(input())
-roi = 0.18
 
-reinvest = [principle]
-return_ = 0
+def Calculate(principal, duration):
 
-withdrawable = 0
+    income = 0
+    roi = 0.18
+    IncomePercentage = 0.9
+    Stake = 0
+    HistoryOfStakes = {7:principal}
+    amount = 0
 
+    for x in range(duration):
 
-for x in range(30):
+        if(x < 7):
+            income = principal * roi
+            income *= IncomePercentage
+            Stake += income
+            if(Stake >= 0.05):
+                HistoryOfStakes[x+7] = Stake
+                principal += Stake
+                Stake = 0
+            income = 0
+        if(x >= 7 and x < duration-x):
+            if(x in HistoryOfStakes):
+                principal -= HistoryOfStakes[x]
+                del HistoryOfStakes[x]
+            income = principal * roi
+            income *= IncomePercentage
+            Stake += income
+            if(Stake >= 0.05):
+                HistoryOfStakes[x+7] = Stake
+                principal += Stake
+                Stake = 0
+            income = 0
+        if(x == duration-x):
+            if(x in HistoryOfStakes):
+                principal -= HistoryOfStakes[x]
+                del HistoryOfStakes[x]
+            income = principal * roi
+            income *= IncomePercentage
+            amount += income
+            income = 0
     
-    if(x < 8):
-        return_ = principle * roi
-        return_ = return_ - return_ * 0.1
-        if(return_ >= 0.05):
-            principle += return_
-            reinvest.append(return_)
-    if(x >= 8 and x < 21):
-        principle -= reinvest[abs(8-x)]
-        return_ = principle * roi
-        return_ -= return_ * 0.1
-        if(return_ >= 0.05):
-            principle += return_
-            reinvest.append(return_)
-    if(x >= 22):
-        principle -= reinvest[abs(8-x)]
-        return_ = principle * roi
-        return_ -= return_ * 0.1
-        withdrawable += return_
-        reinvest.append(return_)
+    print(amount)
 
-print(withdrawable)
-
-        
-        
+# principal = float(input("Enter your principal amount: "))
+principal = float(input("Enter your principal amount: "))
+duration = int(input("No. of dayes you want to store for? "))
+Calculate(principal, duration)
