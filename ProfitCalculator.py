@@ -8,9 +8,12 @@ def Calculate(principal, duration):
     HistoryOfStakes = {7:principal}
     amount = 0
 
-    for x in range(duration):
+    for x in range(1,duration+1):
 
-        if(x < 7):
+        if(x <= 7):
+            if(x in HistoryOfStakes):
+                principal -= HistoryOfStakes[x]
+                del HistoryOfStakes[x]
             income = principal * roi
             income *= IncomePercentage
             Stake += income
@@ -19,7 +22,7 @@ def Calculate(principal, duration):
                 principal += Stake
                 Stake = 0
             income = 0
-        if(x >= 7 and x < duration-x):
+        if(x > 7 and x < duration-x):
             if(x in HistoryOfStakes):
                 principal -= HistoryOfStakes[x]
                 del HistoryOfStakes[x]
@@ -45,4 +48,4 @@ def Calculate(principal, duration):
 # principal = float(input("Enter your principal amount: "))
 principal = float(input("Enter your principal amount: "))
 duration = int(input("No. of dayes you want to store for? "))
-Calculate(principal, duration)
+Calculate(principal, duration)x

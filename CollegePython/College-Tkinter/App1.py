@@ -2,9 +2,14 @@
 from tkinter import *
 
 mainwindow = Tk()
+mainwindow.geometry("400x500")
+
+
+def ButtonEvent():
+    print("Button Clicked!")
 
 # creating a button
-bt = Button(mainwindow, text="Click ME!", command=lambda: print("Hello"))
+bt = Button(mainwindow, text="Click ME!", command=ButtonEvent)
 bt.pack()
 
 
